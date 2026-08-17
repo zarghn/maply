@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maply — Track your workouts</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <header class="app-header">
+          <img src="img/logo.png" alt="" class="logo-icon" />
+        </header>
+        <form class="workout-form" id="workoutForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputType">choose</label>
+              <select id="inputType" name="type" class="form-badge" disabled>
+                <option value="running">run</option>
+                <option value="cycling">cycle</option>
+                <option value="cycling">walk</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="inputDistance">Distance</label>
+              <input
+                id="inputDistance"
+                name="distance"
+                class="form-badge"
+                type="number"
+                inputmode="decimal"
+                placeholder="KM"
+                step="0.1"
+                min="0"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="inputDuration">Duration</label>
+              <input
+                id="inputDuration"
+                name="duration"
+                class="form-badge"
+                type="number"
+                inputmode="numeric"
+                placeholder="MIN"
+                min="0"
+                disabled
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="inputCadence">Cadence</label>
+              <input
+                id="inputCadence"
+                name="cadence"
+                class="form-badge badge-wide"
+                type="number"
+                inputmode="numeric"
+                placeholder="STEP/MIN"
+                min="0"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn-entry" id="btnEntry" disabled>
+              <span>entry</span>
+              <img src="img/arrow-entry.png" alt="" class="icon-arrow" />
+            </button>
+          </div>
+        </form>
+
+        <ul class="workouts-list" id="workoutsList">
+          <!-- <li class="workout-card workout--cycling" data-id="1">
+            <div class="workout-header">
+              <h2 class="workout-title">Cycling on August 10</h2>
+              <button class="btn-icon btn-edit" aria-label="Edit workout">
+                <img src="img/pencil.png" alt="Edit" />
+              </button>
+            </div>
+            <div class="workout-details">
+              <div class="workout-detail workout-distance">
+                <span class="detail-icon" aria-hidden="true">🚴</span>
+                <span class="detail-value">12</span>
+                <span class="detail-unit">km</span>
+              </div>
+              <div class="workout-detail workout-duration">
+                <span class="detail-icon" aria-hidden="true">⏱️</span>
+                <span class="detail-value">320</span>
+                <span class="detail-unit">min</span>
+              </div>
+              <div class="workout-detail workout-pace">
+                <span class="detail-icon" aria-hidden="true">⚡</span>
+                <span class="detail-value">12.1</span>
+                <span class="detail-unit unit-caps">km/h</span>
+              </div>
+              <button class="btn-icon btn-delete" aria-label="Delete workout">
+                <img src="img/trash-bin.png" alt="Delete" />
+              </button>
+            </div>
+          </li>
+
+          <li class="workout-card workout--running" data-id="2">
+            <div class="workout-header">
+              <h2 class="workout-title">Cycling on August 10</h2>
+              <button class="btn-icon btn-edit" aria-label="Edit workout">
+                <img src="img/pencil.png" alt="Edit" />
+              </button>
+            </div>
+            <div class="workout-details">
+              <div class="workout-detail workout-distance">
+                <span class="detail-icon" aria-hidden="true">🏃</span>
+                <span class="detail-value">26</span>
+                <span class="detail-unit">km</span>
+              </div>
+              <div class="workout-detail workout-duration">
+                <span class="detail-icon" aria-hidden="true">⏱️</span>
+                <span class="detail-value">30</span>
+                <span class="detail-unit">min</span>
+              </div>
+              <div class="workout-detail workout-pace">
+                <span class="detail-icon" aria-hidden="true">⚡</span>
+                <span class="detail-value">4.1</span>
+                <span class="detail-unit unit-caps">km/h</span>
+              </div>
+              <button class="btn-icon btn-delete" aria-label="Delete workout">
+                <img src="img/trash-bin.png" alt="Delete" />
+              </button>
+            </div>
+          </li>
+
+          <li class="workout-card workout--cycling" data-id="3">
+            <div class="workout-header">
+              <h2 class="workout-title">Cycling on August 10</h2>
+              <button class="btn-icon btn-edit" aria-label="Edit workout">
+                <img src="img/pencil.png" alt="Edit" />
+              </button>
+            </div>
+            <div class="workout-details">
+              <div class="workout-detail workout-distance">
+                <span class="detail-icon" aria-hidden="true">🚴</span>
+                <span class="detail-value">22</span>
+                <span class="detail-unit">km</span>
+              </div>
+              <div class="workout-detail workout-duration">
+                <span class="detail-icon" aria-hidden="true">⏱️</span>
+                <span class="detail-value">120</span>
+                <span class="detail-unit">min</span>
+              </div>
+              <div class="workout-detail workout-pace">
+                <span class="detail-icon" aria-hidden="true">⚡</span>
+                <span class="detail-value">6</span>
+                <span class="detail-unit unit-caps">km/h</span>
+              </div>
+              <button class="btn-icon btn-delete" aria-label="Delete workout">
+                <img src="img/trash-bin.png" alt="Delete" />
+              </button>
+            </div>
+          </li>
+
+          <li class="workout-card workout--running" data-id="4">
+            <div class="workout-header">
+              <h2 class="workout-title">Cycling on August 10</h2>
+              <button class="btn-icon btn-edit" aria-label="Edit workout">
+                <img src="img/pencil.png" alt="Edit" />
+              </button>
+            </div>
+            <div class="workout-details">
+              <div class="workout-detail workout-distance">
+                <span class="detail-icon" aria-hidden="true">🚶</span>
+                <span class="detail-value">22</span>
+                <span class="detail-unit">km</span>
+              </div>
+              <div class="workout-detail workout-duration">
+                <span class="detail-icon" aria-hidden="true">⏱️</span>
+                <span class="detail-value">180</span>
+                <span class="detail-unit">min</span>
+              </div>
+              <div class="workout-detail workout-pace">
+                <span class="detail-icon" aria-hidden="true">⚡</span>
+                <span class="detail-value">4.7</span>
+                <span class="detail-unit unit-caps">km/h</span>
+              </div>
+              <button class="btn-icon btn-delete" aria-label="Delete workout">
+                <img src="img/trash-bin.png" alt="Delete" />
+              </button>
+            </div>
+          </li> -->
+        </ul>
+      </aside>
+      <section class="map-section">
+        <div id="map" class="map"></div>
+
+        <div class="zoom-controls"></div>
+      </section>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

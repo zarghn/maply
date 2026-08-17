@@ -1,0 +1,425 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62%;
+}
+#map {
+  height: 180px;
+}
+body {
+  font-family: "Berlin Sans FB Demi", "Berlin Sans FB", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem;
+
+  background-color: #44295f;
+  color: #fff;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+select {
+  font-family: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.app {
+  width: 100%;
+  max-width: 185rem;
+  aspect-ratio: 1400 / 660;
+  display: flex;
+  border-radius: 6rem;
+  overflow: hidden;
+  box-shadow:
+    2rem 3rem 8rem rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.sidebar {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.8rem 2rem 2.4rem;
+  background: linear-gradient(180deg, #3e1d48, #110522);
+  overflow-y: auto;
+  border-radius: 0rem 6rem 6rem 0rem;
+  box-shadow:
+    0 3rem 8rem rgb(0, 0, 0),
+    0 0 0 1px rgba(0, 0, 0, 0.03) inset;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  margin-top: -5rem;
+  margin-left: 15rem;
+}
+
+.logo-icon {
+  width: 22rem;
+  height: 22rem;
+  object-fit: contain;
+  align-items: center;
+}
+
+.app-name {
+  font-size: 4.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.workout-form {
+  background: linear-gradient(180deg, #4a255f, #674079);
+  border: none;
+  border-radius: 4rem;
+  padding: 1.8rem 2rem 1.6rem;
+  margin-bottom: 6rem;
+  margin-top: -3rem;
+}
+
+.form-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2.5rem;
+  padding: 0.4rem 1rem 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.form-row + .form-row {
+  margin-top: 0.4rem;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.form-label {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  min-width: 10.5rem;
+}
+
+.form-badge {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: linear-gradient(135deg, #ff00ba 0%, #ff00ba 100%);
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  width: 9.2rem;
+  box-shadow: 0 0.3rem 0.8rem rgba(255, 40, 150, 0.35);
+}
+
+.form-badge::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+select.form-badge {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+select.form-badge option {
+  color: #2b1440;
+  background: #fff;
+}
+.form-badge::-webkit-inner-spin-button,
+.form-badge::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-badge[type="number"] {
+  -moz-appearance: textfield;
+}
+.form-submit-row {
+  display: flex;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -3rem;
+}
+
+.btn-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: #1a0929;
+  border-radius: 999px;
+  padding: 0.1rem 2rem 0.5rem 2rem;
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: #fff;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.btn-entry:hover {
+  transform: translateY(-1px);
+  background: #9f0074;
+}
+
+.btn-entry .icon-arrow {
+  width: 7rem;
+  height: 5rem;
+  object-fit: contain;
+}
+
+.workouts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  overflow-y: auto;
+  padding-right: 0.1rem;
+}
+
+.workout-card {
+  position: relative;
+  background: linear-gradient(180deg, #4a255f, #674079);
+  border: none;
+  border-radius: 3.5rem;
+  padding: 1rem 2rem 1.5rem 2rem;
+}
+
+.workout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.workout-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #ff00ba;
+}
+
+.workout-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.workout-detail {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 3rem;
+}
+
+.detail-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-right: 1rem;
+}
+
+.detail-value {
+  font-weight: 800;
+  color: #fff;
+}
+
+.detail-unit {
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: lowercase;
+}
+
+.detail-unit.unit-caps {
+  text-transform: uppercase;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.btn-icon:hover {
+  opacity: 1;
+}
+
+.btn-icon img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+.btn-edit {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.btn-delete {
+  margin-left: auto;
+  align-self: center;
+  width: 2.5rem;
+  height: 4rem;
+}
+.btn-delete img {
+  margin-left: auto;
+  align-self: center;
+  width: 3rem;
+  height: 4rem;
+}
+
+/* ==========================================================
+     MAP SECTION (RIGHT)
+     ========================================================== */
+.map-section {
+  position: relative;
+  flex: 1 1 auto;
+  background: #000000;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Zoom controls overlay ---------- */
+.zoom-controls {
+  position: absolute;
+  top: 3rem;
+  right: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background: transparent;
+  border-radius: 1.6rem;
+}
+
+.zoom-btn {
+  width: 4rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: 800;
+  color: #ff3fa1;
+  background: #1a0929;
+  border-radius: 2rem;
+  box-shadow: 0 0.3rem 0.8rem rgba(17, 5, 11, 0.4);
+  line-height: 1;
+}
+
+.zoom-btn:active {
+  transform: scale(0.94);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .app {
+    max-width: 100%;
+    aspect-ratio: auto;
+    min-height: 100vh;
+    border-radius: 0;
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+    max-height: none;
+    border-radius: 0;
+    padding: 2.4rem 1.8rem 2rem;
+  }
+
+  .app-name {
+    font-size: 2.2rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .form-row + .form-row {
+    margin-top: 0.1rem;
+  }
+
+  .form-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .form-badge {
+    width: 9.5rem;
+  }
+
+  .workout-details {
+    flex-wrap: wrap;
+    row-gap: 0.6rem;
+  }
+
+  .map-section {
+    flex: none;
+    width: 100%;
+    height: 42rem;
+  }
+
+  .zoom-controls {
+    top: 1.6rem;
+    right: 1.6rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .workout-title {
+    font-size: 1.4rem;
+  }
+
+  .detail-value,
+  .form-label {
+    font-size: 1.35rem;
+  }
+}
